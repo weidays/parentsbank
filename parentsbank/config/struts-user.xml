@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+   <package name="user" namespace="/user" extends="struts-default">
+   	  <global-results>
+      <result name="homeIndex" type="redirect">
+      	 ../index.aspx
+      </result>
+      <result name="errorpage" >
+      	 /pages/front/error/errormsg.jsp
+      </result>
+    	</global-results>
+    	
+		<action name="login" class="com.hilife.server.action.UserInfoAction" method="login">
+		</action>
+		<action name="logout" class="com.hilife.server.action.UserInfoAction" method="logout">
+		</action>
+		<action name="userRegist" class="com.hilife.server.action.UserInfoAction" method="userRegist">
+		</action>
+		<action name="getUserDetail" class="com.hilife.server.action.UserInfoAction" method="getUserDetail">
+		</action>
+		<action name="updateUserInfo" class="com.hilife.server.action.UserInfoAction" method="updateUserInfo">
+		</action>
+		<action name="getOpenedAreaList" class="com.hilife.server.action.AreaCodeAction" method="getOpenedAreaList">
+		</action>
+	</package>
+	
+	
+</struts>

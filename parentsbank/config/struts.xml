@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration
+2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.custom.i18n.resources" value="globalMessages" />
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+    <constant name="struts.objectFactory.spring.autoWire" value="type" />
+    <constant name="struts.objectFactory.spring.useClassCache" value="false" />
+    <constant name="struts.multipart.maxSize" value="500000000"></constant>  
+
+    	
+    	<include file="struts-user.xml"></include>
+    	<include file="struts-pic.xml"></include>
+    	<include file="struts-self.xml"></include>
+    	<include file="struts-log.xml"></include>
+    	<include file="struts-resource.xml"></include>
+    	<include file="struts-index.xml"></include>
+    	
+</struts>
