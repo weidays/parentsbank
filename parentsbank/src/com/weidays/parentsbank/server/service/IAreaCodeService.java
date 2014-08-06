@@ -2,7 +2,7 @@ package com.weidays.parentsbank.server.service;
 
 import java.util.List;
 
-import com.weidays.parentsbank.server.entity.po.UserInfo;
+import com.weidays.parentsbank.server.entity.po.BankOwner;
 
 public interface IAreaCodeService{
 	

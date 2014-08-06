@@ -19,10 +19,10 @@ import com.weidays.parentsbank.server.common.BaseAction;
 import com.weidays.parentsbank.server.common.util.JacksonMapper;
 import com.weidays.parentsbank.server.common.util.JsonUtil;
 import com.weidays.parentsbank.server.common.util.ServletTool;
-import com.weidays.parentsbank.server.entity.po.UserInfo;
+import com.weidays.parentsbank.server.entity.po.BankOwner;
 import com.weidays.parentsbank.server.entity.vo.JsonVo;
 import com.weidays.parentsbank.server.entity.vo.StateVo;
-import com.weidays.parentsbank.server.service.IUserInfoService;
+import com.weidays.parentsbank.server.service.IBankOwnerService;
 /**
  * 用户相关，</br>
 * 此类的访问：归类到了user下：</br>
@@ -30,25 +30,25 @@ import com.weidays.parentsbank.server.service.IUserInfoService;
 * @author Wei
 *
 */
-public class UserInfoAction extends BaseAction
+public class BankOwerAction extends BaseAction
 {
     private static final long serialVersionUID = -7253368493741872822L;
     
-    private UserInfo userInfo;
+    private BankOwner bankOwner;
    /**
-    * 更新操作是,用于指定更新哪个字段,内容与userInfo的属性名保持一致
+    * 更新操作是,用于指定更新哪个字段,内容与bankOwner的属性名保持一致
     */
     private String updateContent;
     @Autowired
-    private IUserInfoService userInfoService;
+    private IBankOwnerService bankOwnerService;
     /**
      * 用户注册</br>
      * 参数要求：</br>
-     *  UserInfo的所有字段</br>
-     *  如userInfo.userName=？ </br>
+     *  BankOwner的所有字段</br>
+     *  如bankOwner.userName=？ </br>
      * 输出示例：</br>
      *  {success:true, msg:'注册成功'}</br>
-     * @see UserInfo</br>
+     * @see BankOwner</br>
      * @throws IOException 
      */
     public void userRegist() throws IOException{
@@ -60,7 +60,7 @@ public class UserInfoAction extends BaseAction
          JsonVo jv=new JsonVo();
          try
          {
-        	 List userList=userInfoService.saveOrUpdateUserInfo(userInfo);
+        	 List userList=bankOwnerService.saveOrUpdateBankOwner(bankOwner);
         	if(userList.size()>0){
         		StateVo sv=new StateVo(STATUS_SUCCESS, "", "注册成功");
         		jv.setData(userList.get(0));
@@ -83,10 +83,10 @@ public class UserInfoAction extends BaseAction
     /**
      * 用户资料</br>
      * 参数要求：</br>
-     *  userInfo.hilifeId=？ </br>
+     *  bankOwner.hilifeId=？ </br>
      * 输出示例：</br>
      *   </br>
-     * @see UserInfo
+     * @see BankOwner
      * @throws IOException 
      */
     public void getUserDetail() throws IOException{
@@ -97,7 +97,7 @@ public class UserInfoAction extends BaseAction
          JsonVo jv=new JsonVo();
          try
          {
-        	List userList= userInfoService.getUserDetailByHilifeId(userInfo.getHilifeId());
+        	List userList= bankOwnerService.getUserDetailByHilifeId(bankOwner.getId());
         	if(userList.size()>0){
         		StateVo sv=new StateVo(STATUS_SUCCESS, "", "成功获取");
         		jv.setData(userList.get(0));
@@ -121,8 +121,8 @@ public class UserInfoAction extends BaseAction
     /**
      * 用户登录</br>
      * 参数要求：</br>
-     *  userInfo.userName=？ </br>
-     *  userInfo.password=？ </br>
+     *  bankOwner.userName=？ </br>
+     *  bankOwner.password=？ </br>
      * @throws IOException
      */
 	public void login() throws IOException {
@@ -133,11 +133,11 @@ public class UserInfoAction extends BaseAction
 		PrintWriter pw = response.getWriter();
 		 JsonVo jv=new JsonVo();
 		try {
-			UserInfo ui = userInfoService.userLogin(userInfo);
+			BankOwner ui = bankOwnerService.userLogin(bankOwner);
 			StateVo sv=new StateVo(STATUS_FAILED, "用户名或密码错误", "");
 			if (ui != null) {
-				setSession("userInfo", ui);
-				setSession("hilifeId", ui.getHilifeId());
+				setSession("bankOwner", ui);
+				setSession("hilifeId", ui.getId());
 				
 				sv=new StateVo(STATUS_SUCCESS, "登陆成功", "");
 			} 
@@ -158,15 +158,15 @@ public class UserInfoAction extends BaseAction
 	/**
      * 用户资料</br>
      * 参数要求：</br>
-     *   1.userInfo.hilifeId=？</br>
-     *   2.updateContent=?  这个问号（？）就是你要更新的字段。字段名称就是UserInfo中的字段。</br>
-     *   3.userInfo.x=?   要更新哪个字段就需要为该字段赋值，x表示要更新的字段也就是同上个参数的？</br>
+     *   1.bankOwner.hilifeId=？</br>
+     *   2.updateContent=?  这个问号（？）就是你要更新的字段。字段名称就是BankOwner中的字段。</br>
+     *   3.bankOwner.x=?   要更新哪个字段就需要为该字段赋值，x表示要更新的字段也就是同上个参数的？</br>
      * 输出示例：</br>
      *    </br>
-     * @see UserInfo
+     * @see BankOwner
      * @throws IOException 
      */
-    public void updateUserInfo() throws IOException{
+    public void updateBankOwner() throws IOException{
     	
          HttpServletResponse response = getResponse();
          getResponse().setCharacterEncoding("UTF-8");
@@ -180,7 +180,7 @@ public class UserInfoAction extends BaseAction
 //     	}
          try
          {
-        	boolean flag= userInfoService.updateUserInfo(userInfo,updateContent);
+        	boolean flag= bankOwnerService.updateBankOwner(bankOwner,updateContent);
         	if(flag){
         		StateVo sv=new StateVo(STATUS_SUCCESS, "更新成功", "更新成功");
     			jv.setState(sv);
@@ -210,12 +210,12 @@ public class UserInfoAction extends BaseAction
 		Map session = ctx.getSession();
 		session.put(name, value);
 	}
-	public UserInfo getUserInfo() {
-		return userInfo;
+	public BankOwner getBankOwner() {
+		return bankOwner;
 	}
 
-	public void setUserInfo(UserInfo userInfo) {
-		this.userInfo = userInfo;
+	public void setBankOwner(BankOwner bankOwner) {
+		this.bankOwner = bankOwner;
 	}
 	public String getUpdateContent() {
 		return updateContent;

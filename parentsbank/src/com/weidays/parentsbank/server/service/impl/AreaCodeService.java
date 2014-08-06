@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.weidays.parentsbank.server.dao.IAreaCodeDao;
-import com.weidays.parentsbank.server.dao.IUserInfoDao;
-import com.weidays.parentsbank.server.entity.po.UserInfo;
+import com.weidays.parentsbank.server.dao.IBankOwnerDao;
+import com.weidays.parentsbank.server.entity.po.BankOwner;
 import com.weidays.parentsbank.server.service.IAreaCodeService;
-import com.weidays.parentsbank.server.service.IUserInfoService;
+import com.weidays.parentsbank.server.service.IBankOwnerService;
 
 @Service
 public class AreaCodeService implements IAreaCodeService{

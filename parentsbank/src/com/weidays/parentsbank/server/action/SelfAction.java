@@ -20,7 +20,7 @@ import com.weidays.parentsbank.server.common.BaseAction;
 import com.weidays.parentsbank.server.common.util.JacksonMapper;
 import com.weidays.parentsbank.server.common.util.JsonUtil;
 import com.weidays.parentsbank.server.common.util.ServletTool;
-import com.weidays.parentsbank.server.entity.po.UserInfo;
+import com.weidays.parentsbank.server.entity.po.BankOwner;
 import com.weidays.parentsbank.server.entity.vo.DataListVo;
 import com.weidays.parentsbank.server.entity.vo.JsonVo;
 import com.weidays.parentsbank.server.entity.vo.PageInfoVo;
@@ -38,7 +38,7 @@ public class SelfAction extends BaseAction
 {
     private static final long serialVersionUID = -7253368493741872822L;
     
-    private UserInfo userInfo;
+    private BankOwner userInfo;
     //当前页面
     private int page=1;
    
@@ -68,8 +68,8 @@ public class SelfAction extends BaseAction
          try
          {
         	int total=0;
-        	total= sharePicService.getNewsFeedCount(userInfo.getHilifeId());
-        	List list= sharePicService.getNewsFeed(userInfo.getHilifeId(),start,pageSize);
+        	total= sharePicService.getNewsFeedCount(userInfo.getId());
+        	List list= sharePicService.getNewsFeed(userInfo.getId(),start,pageSize);
         	StateVo sv;
           	DataListVo dlv;
           	PageInfoVo piv = null;
@@ -116,8 +116,8 @@ public class SelfAction extends BaseAction
          try
          {
         	int total=0;
-        	total= sharePicService.getAtMeCount(userInfo.getHilifeId());
-        	List list= sharePicService.getAtMe(userInfo.getHilifeId(),start,pageSize);
+        	total= sharePicService.getAtMeCount(userInfo.getId());
+        	List list= sharePicService.getAtMe(userInfo.getId(),start,pageSize);
         	StateVo sv;
           	DataListVo dlv;
           	PageInfoVo piv = null;
@@ -154,11 +154,11 @@ public class SelfAction extends BaseAction
 		Map session = ctx.getSession();
 		session.put(name, value);
 	}
-	public UserInfo getUserInfo() {
+	public BankOwner getUserInfo() {
 		return userInfo;
 	}
 
-	public void setUserInfo(UserInfo userInfo) {
+	public void setUserInfo(BankOwner userInfo) {
 		this.userInfo = userInfo;
 	}
 

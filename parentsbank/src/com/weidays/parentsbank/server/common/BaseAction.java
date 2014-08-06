@@ -35,7 +35,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.weidays.parentsbank.server.common.util.JsonData;
 import com.weidays.parentsbank.server.common.util.StringUtils;
 import com.weidays.parentsbank.server.entity.po.PicInfo;
-import com.weidays.parentsbank.server.entity.po.UserInfo;
+import com.weidays.parentsbank.server.entity.po.BankOwner;
 import com.weidays.parentsbank.server.service.ICommonService;
 import com.weidays.parentsbank.server.service.IResourceService;
 
@@ -226,7 +226,7 @@ public class BaseAction extends ActionSupport implements ServletRequestAware,
 	// 接受依赖注入的属性
 	private String savePath;
 
-	private UserInfo userInfo;
+	private BankOwner bankOwer;
 	@Autowired
 	private IResourceService resourceService;
 
@@ -286,7 +286,7 @@ public class BaseAction extends ActionSupport implements ServletRequestAware,
 				// HdfsUtil.uploadFile(picPath,hdfsBaseUrl+"/"+urlAppend);
 
 				// 2：提交PicInfo
-				picInfo.setHilifeId(userInfo.getHilifeId());
+				picInfo.setHilifeId(bankOwer.getId());
 				picInfo.setPicName(getImageFileName()[i]);
 				int picId = resourceService.savePicInfo(picInfo);
 				picIds.add(picId);
@@ -421,12 +421,12 @@ public class BaseAction extends ActionSupport implements ServletRequestAware,
 	}
 
 
-	public UserInfo getUserInfo() {
-		return userInfo;
+	public BankOwner getBankOwner() {
+		return bankOwer;
 	}
 
-	public void setUserInfo(UserInfo userInfo) {
-		this.userInfo = userInfo;
+	public void setBankOwner(BankOwner bankOwer) {
+		this.bankOwer = bankOwer;
 	}
 
 }

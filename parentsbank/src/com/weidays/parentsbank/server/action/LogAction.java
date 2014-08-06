@@ -15,7 +15,7 @@ import com.weidays.parentsbank.server.common.util.JsonUtil;
 import com.weidays.parentsbank.server.common.util.ServletTool;
 import com.weidays.parentsbank.server.entity.po.CommentLog;
 import com.weidays.parentsbank.server.entity.po.FavourLog;
-import com.weidays.parentsbank.server.entity.po.UserInfo;
+import com.weidays.parentsbank.server.entity.po.BankOwner;
 import com.weidays.parentsbank.server.entity.vo.DataListVo;
 import com.weidays.parentsbank.server.entity.vo.JsonVo;
 import com.weidays.parentsbank.server.entity.vo.PageInfoVo;
@@ -36,7 +36,7 @@ public class LogAction extends BaseAction {
 	 */
 	private static final long serialVersionUID = -3069690703028744027L;
 	private CommentLog commentLog;
-	private UserInfo userInfo;
+	private BankOwner userInfo;
 	private FavourLog favourLog;
 	private int page=1;
 	@Autowired
@@ -112,7 +112,7 @@ public class LogAction extends BaseAction {
 		PrintWriter pw = response.getWriter();
 		JsonVo jv=new JsonVo();
 		try {
-			commentLog.setHilifeId(userInfo.getHilifeId());
+			commentLog.setHilifeId(userInfo.getId());
 			StateVo sv;
 			int commentCount = logService.commentIt(commentLog);
 		 	sv=new StateVo(STATUS_SUCCESS, "评论成功", "评论成功");
@@ -204,7 +204,7 @@ public class LogAction extends BaseAction {
 		getResponse().setCharacterEncoding("UTF-8");
 		JsonVo jv=new JsonVo();
 		try {
-			favourLog.setHilifeId(userInfo.getHilifeId());
+			favourLog.setHilifeId(userInfo.getId());
 			StateVo sv;
 			int favourCount = logService.favourIt(favourLog);
 			sv=new StateVo(STATUS_SUCCESS, "赞成功", "返回最新赞统计数");
@@ -239,10 +239,10 @@ public class LogAction extends BaseAction {
 	public void setPage(int page) {
 		this.page = page;
 	}
-	public UserInfo getUserInfo() {
+	public BankOwner getUserInfo() {
 		return userInfo;
 	}
-	public void setUserInfo(UserInfo userInfo) {
+	public void setUserInfo(BankOwner userInfo) {
 		this.userInfo = userInfo;
 	}
 

@@ -13,7 +13,7 @@ import com.weidays.parentsbank.server.common.BaseAction;
 import com.weidays.parentsbank.server.common.util.JsonUtil;
 import com.weidays.parentsbank.server.common.util.ServletTool;
 import com.weidays.parentsbank.server.entity.bo.PictureShareBo;
-import com.weidays.parentsbank.server.entity.po.UserInfo;
+import com.weidays.parentsbank.server.entity.po.BankOwner;
 import com.weidays.parentsbank.server.entity.vo.JsonVo;
 import com.weidays.parentsbank.server.entity.vo.StateVo;
 import com.weidays.parentsbank.server.service.ISharePicService;
@@ -52,7 +52,7 @@ public class SharePicAction extends BaseAction {
 		PrintWriter pw = response.getWriter();
 		JsonVo jv = new JsonVo();
 		try {
-			picShare.setHilifeId(getUserInfo().getHilifeId());
+			picShare.setHilifeId(getBankOwner().getId());
 			picShare.setPicIds(picIds);
 			if (sharePicService.sharePic(picShare)) {
 				StateVo sv = new StateVo(STATUS_SUCCESS, "分享成功", "分享成功");
@@ -86,14 +86,14 @@ public class SharePicAction extends BaseAction {
 		PrintWriter pw = response.getWriter();
 		JsonVo jv = new JsonVo();
 		try {
-//			UserInfo ui = getUserSession();
+//			BankOwner ui = getUserSession();
 //			if (ui == null) {
 //				StateVo sv = new StateVo(1, "会话过期", "会话过期");
 //				jv.setState(sv);
 //				JsonUtil.printJsonVo(jv, response);
 //				return;
 //			}
-			picShare.setHilifeId(getUserInfo().getHilifeId());
+			picShare.setHilifeId(getBankOwner().getId());
 			if (sharePicService.reshipPic(picShare)) {
 				StateVo sv = new StateVo(STATUS_SUCCESS, "转载成功", "转载成功");
 				jv.setState(sv);
@@ -125,7 +125,7 @@ public class SharePicAction extends BaseAction {
 		PrintWriter pw = response.getWriter();
 		JsonVo jv = new JsonVo();
 		try {
-//			UserInfo ui = getUserSession();
+//			BankOwner ui = getUserSession();
 //			if (ui == null) {
 //
 //				StateVo sv = new StateVo(1, "会话过期", "会话过期");
@@ -133,7 +133,7 @@ public class SharePicAction extends BaseAction {
 //				JsonUtil.printJsonVo(jv, response);
 //				return;
 //			}
-			picShare.setHilifeId(getUserInfo().getHilifeId());
+			picShare.setHilifeId(getBankOwner().getId());
 			if (sharePicService.shareDel(picShare)) {
 				StateVo sv = new StateVo(STATUS_SUCCESS, "删除成功", "删除成功");
 				jv.setState(sv);
