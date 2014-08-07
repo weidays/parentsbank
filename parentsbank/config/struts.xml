@@ -10,7 +10,7 @@
     <constant name="struts.multipart.maxSize" value="500000000"></constant>  
 
     	
-    	<include file="struts-user.xml"></include>
+    	<include file="struts-bankowner.xml"></include>
     	<include file="struts-pic.xml"></include>
     	<include file="struts-self.xml"></include>
     	<include file="struts-log.xml"></include>

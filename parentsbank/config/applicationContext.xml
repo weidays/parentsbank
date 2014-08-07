@@ -78,13 +78,13 @@
 		</property>
 	</bean>
 	<!-- 所有需要访问数据源的dao基类 -->
-	<bean id="jdbcBaseDao" class="com.hilife.server.common.BaseDao">
+	<bean id="jdbcBaseDao" class="com.weidays.parentsbank.server.common.BaseDao">
 		<property name="jdbcTemplate">
 			<ref bean="jdbcTemplate" />
 		</property>
 	</bean>
 
-	<context:component-scan base-package="com.hilife.server.*"/>
+	<context:component-scan base-package="com.weidays.parentsbank.server.*"/>
 	<context:annotation-config /> 
 
 </beans>

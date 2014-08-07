@@ -118,6 +118,9 @@ public class BankOwerAction extends BaseAction
          }
     }
     
+    public String toLogin(){
+    	return SUCCESS;
+    }
     /**
      * 用户登录</br>
      * 参数要求：</br>

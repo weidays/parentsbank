@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+   <package name="bankowner" namespace="/bankowner" extends="struts-default">
+   	  <global-results>
+      <result name="homeIndex" type="redirect">
+      	 ../index.aspx
+      </result>
+      <result name="errorpage" >
+      	 /pages/front/error/errormsg.jsp
+      </result>
+    	</global-results>
+    	
+		<action name="toLogin" class="com.weidays.parentsbank.server.action.BankOwerAction" method="toLogin">
+			<result name="success">/page/bankowner/login.jsp</result>
+		</action>
+		<action name="login" class="com.weidays.parentsbank.server.action.BankOwerAction" method="login">
+		</action>
+		<action name="logout" class="com.weidays.parentsbank.server.action.BankOwerAction" method="logout">
+		</action>
+		<action name="userRegist" class="com.weidays.parentsbank.server.action.BankOwerAction" method="userRegist">
+		</action>
+		<action name="getUserDetail" class="com.weidays.parentsbank.server.action.BankOwerAction" method="getUserDetail">
+		</action>
+		<action name="updateUserInfo" class="com.weidays.parentsbank.server.action.BankOwerAction" method="updateUserInfo">
+		</action>
+		<action name="getOpenedAreaList" class="com.weidays.parentsbank.server.action.BankOwerAction" method="getOpenedAreaList">
+		</action>
+	</package>
+	
+	
+</struts>
