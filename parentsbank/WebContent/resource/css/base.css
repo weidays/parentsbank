@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+@IMPORT url("./bootstrap/css/bootstrap-theme.min.css");
+@IMPORT url("./bootstrap/css/bootstrap.min.css");
+
+/**************************************
+              按钮样式设定
+ *************************************/
+/*小号宽度*/
+.btn-width-sm{
+	width: 50px;
+}
+/*中号宽度*/
+.btn-width-md{
+	width: 100px;
+}
+/*大号宽度*/
+.btn-width-lg{
+	width: 150px;
+}
+/*取消panel的边框*/
+.panel-clear-border{
+	border:0px;
+}
+/**解决bootstrap中的css冲突,取消弹出窗口中的外边距**/
+.box h3,.box2 h3{
+	margin: 0px;
+} 
+
+ 
+ 
